@@ -98,3 +98,9 @@ emptyDiv.appendChild(enCoursDiv);
 emptyDiv.appendChild(termineDiv);
 
 appDiv.appendChild(emptyDiv);
+
+const addTask = document.createElement("p");
+addTask.textContent = "+";
+addTask.classList.add("add-task"); 
+
+appDiv.appendChild(addTask);

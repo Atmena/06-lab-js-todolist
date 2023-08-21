@@ -1,58 +1,58 @@
-@charset "UTF-8";
 :root {
-  font-family: "Itim", sans-serif; /* Font par défaut */
+  font-family: "Itim", sans-serif;
 }
 
 body {
   background-image: url(image/background-white.png);
-  font-family: "Itim", sans-serif; /* Utilise la font-family par défaut définie */
-  margin: 0px 77px;
+  font-family: "Itim", sans-serif;
+  margin: 0rem 4.8125rem;
 }
 
-/* Style pour le header */
+p {
+  margin: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 44px;
-  padding-bottom: 66.3px;
+  padding-top: 2.75rem;
+  padding-bottom: 4.1437rem;
 }
 
-/* Style pour le label et le conteneur de recherche */
 .search-input-label {
-  margin-bottom: 5px;
+  margin-bottom: 0.3125rem;
   font-family: "Itim", sans-serif;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .mode-switcher {
   display: flex;
   align-items: center;
-  border-radius: 25px;
-  border: 1px solid #000;
-  width: 60px;
-  height: 35px;
-  padding: 0 5px;
+  border-radius: 1.5625rem;
+  border: 0.0625rem solid #000;
+  width: 3.75rem;
+  height: 2.1875rem;
+  padding: 0 0.3125rem;
   position: relative;
   cursor: pointer;
   overflow: hidden;
 }
 .mode-switcher .mode-image {
-  padding-left: 5px;
+  padding-left: 0.3125rem;
   position: absolute;
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   transition: transform 0.4s ease-in-out;
   transform: translateX(0);
-  left: 0; /* Ajuste la position de départ */
+  left: 0;
 }
 .mode-switcher.dark-mode-active .mode-image {
   padding: 0;
-  transform: translateX(100%); /* Ajuste la position lorsqu'activé */
-  right: 0; /* Ajuste la position lorsqu'activé */
+  transform: translateX(100%);
+  right: 0;
 }
 
-/* Style pour le mode dark */
 .dark-mode {
   background-image: url(image/background-black.png);
   color: #fff;
@@ -69,9 +69,13 @@ body {
 
 .toDo {
   background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  min-height: 140px;
+  border-radius: 0.625rem;
+  min-height: 8.75rem;
   overflow: hidden;
+}
+
+.add-task {
+  font-size: 1.1719rem;
 }
 
 /*# sourceMappingURL=style.css.map */
