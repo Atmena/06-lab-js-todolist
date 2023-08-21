@@ -1,0 +1,50 @@
+@charset "UTF-8";
+:root {
+  font-family: "Itim", sans-serif; /* Font par défaut */
+}
+
+body {
+  background-image: url(src/image/background-white.png);
+  font-family: "Itim", sans-serif; /* Utilise la font-family par défaut définie */
+}
+
+/* Style pour le header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style pour le label et le conteneur de recherche */
+.search-input-label {
+  display: block;
+  margin-bottom: 5px;
+  font-family: "Itim", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* Style pour le mode switcher */
+.mode-switcher {
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  border: 1px solid #000;
+  width: 60px;
+  height: 35px;
+  padding: 0 5px;
+}
+.mode-switcher .mode-image {
+  cursor: pointer;
+}
+
+/* Style pour le mode dark */
+.dark-mode {
+  background-image: url(src/image/background-black.png);
+  color: #fff;
+}
+
+/*# sourceMappingURL=style.css.map */
