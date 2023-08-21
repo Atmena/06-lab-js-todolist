@@ -23,7 +23,7 @@ const modeSwitcher = document.createElement("div");
 modeSwitcher.classList.add("mode-switcher");
 
 const modeImage = document.createElement("img");
-modeImage.src = "src/image/light-mode.svg"; // Commence avec l'image light-mode
+modeImage.src = "src/image/light-mode.svg";
 modeImage.alt = "Mode Switcher";
 modeImage.width = 32;
 modeImage.height = 32;
@@ -61,7 +61,6 @@ emptyDiv.classList.add("app");
 // Créer trois div pour les différentes étapes
 const aFaireDiv = document.createElement("div");
 aFaireDiv.id = "aFaire";
-aFaireDiv.classList.add("toDo");
 
 // Ajouter un paragraphe et une div à la div "aFaireDiv"
 const aFaireName = document.createElement("p");
@@ -69,34 +68,33 @@ aFaireName.textContent = "À faire";
 aFaireDiv.appendChild(aFaireName);
 
 const aFaireItemsDiv = document.createElement("div");
+aFaireItemsDiv.classList.add("toDo");
 aFaireDiv.appendChild(aFaireItemsDiv);
 
 const enCoursDiv = document.createElement("div");
 enCoursDiv.id = "enCours";
-enCoursDiv.classList.add("toDo");
 
 const enCoursName = document.createElement("p");
 enCoursName.textContent = "En cours";
 enCoursDiv.appendChild(enCoursName);
 
 const enCoursItemsDiv = document.createElement("div");
+enCoursItemsDiv.classList.add("toDo");
 enCoursDiv.appendChild(enCoursItemsDiv);
 
 const termineDiv = document.createElement("div");
 termineDiv.id = "terminé";
-termineDiv.classList.add("toDo");
 
 const termineName = document.createElement("p");
 termineName.textContent = "Terminé";
 termineDiv.appendChild(termineName);
 
 const termineItemsDiv = document.createElement("div");
+termineItemsDiv.classList.add("toDo");
 termineDiv.appendChild(termineItemsDiv);
 
-// Ajouter les div créées à la div sans classe
 emptyDiv.appendChild(aFaireDiv);
 emptyDiv.appendChild(enCoursDiv);
 emptyDiv.appendChild(termineDiv);
 
-// Ajouter la div sans classe à l'élément avec l'ID "app"
 appDiv.appendChild(emptyDiv);

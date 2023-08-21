@@ -6,6 +6,7 @@
 body {
   background-image: url(image/background-white.png);
   font-family: "Itim", sans-serif; /* Utilise la font-family par défaut définie */
+  margin: 0px 77px;
 }
 
 /* Style pour le header */
@@ -13,7 +14,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding-top: 44px;
+  padding-bottom: 66.3px;
 }
 
 /* Style pour le label et le conteneur de recherche */
@@ -56,11 +58,20 @@ body {
   color: #fff;
 }
 
-#app div div {
+.app {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 1 0;
+}
+.app > div {
+  flex: 0 0 32%;
+}
+
+.toDo {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  height: 10px;
-  width: 20px;
+  min-height: 140px;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */
