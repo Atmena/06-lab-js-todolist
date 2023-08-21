@@ -51,3 +51,52 @@ modeSwitcher.addEventListener("click", () => {
     }
 });
 
+const main = document.createElement("main");
+main.classList.add("main");
+
+// Créer une div sans classe
+const emptyDiv = document.createElement("div");
+emptyDiv.classList.add("app");
+
+// Créer trois div pour les différentes étapes
+const aFaireDiv = document.createElement("div");
+aFaireDiv.id = "aFaire";
+aFaireDiv.classList.add("toDo");
+
+// Ajouter un paragraphe et une div à la div "aFaireDiv"
+const aFaireName = document.createElement("p");
+aFaireName.textContent = "À faire";
+aFaireDiv.appendChild(aFaireName);
+
+const aFaireItemsDiv = document.createElement("div");
+aFaireDiv.appendChild(aFaireItemsDiv);
+
+const enCoursDiv = document.createElement("div");
+enCoursDiv.id = "enCours";
+enCoursDiv.classList.add("toDo");
+
+const enCoursName = document.createElement("p");
+enCoursName.textContent = "En cours";
+enCoursDiv.appendChild(enCoursName);
+
+const enCoursItemsDiv = document.createElement("div");
+enCoursDiv.appendChild(enCoursItemsDiv);
+
+const termineDiv = document.createElement("div");
+termineDiv.id = "terminé";
+termineDiv.classList.add("toDo");
+
+const termineName = document.createElement("p");
+termineName.textContent = "Terminé";
+termineDiv.appendChild(termineName);
+
+const termineItemsDiv = document.createElement("div");
+termineDiv.appendChild(termineItemsDiv);
+
+// Ajouter les div créées à la div sans classe
+emptyDiv.appendChild(aFaireDiv);
+emptyDiv.appendChild(enCoursDiv);
+emptyDiv.appendChild(termineDiv);
+
+// Ajouter la div sans classe à l'élément avec l'ID "app"
+appDiv.appendChild(emptyDiv);
