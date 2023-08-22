@@ -15,7 +15,7 @@ searchInput.placeholder = "Rechercher une tâche...";
 searchInput.classList.add("search-input");
 
 const searchInputLabel = document.createElement("label");
-searchInputLabel.textContent = "Nom de la tâche  ";
+searchInputLabel.textContent = "Nom de la tâche";
 searchInputLabel.classList.add("search-input-label");
 searchInputLabel.appendChild(searchInput);
 
@@ -54,15 +54,12 @@ modeSwitcher.addEventListener("click", () => {
 const main = document.createElement("main");
 main.classList.add("main");
 
-// Créer une div sans classe
 const emptyDiv = document.createElement("div");
 emptyDiv.classList.add("app");
 
-// Créer trois div pour les différentes étapes
 const aFaireDiv = document.createElement("div");
 aFaireDiv.id = "aFaire";
 
-// Ajouter un paragraphe et une div à la div "aFaireDiv"
 const aFaireName = document.createElement("p");
 aFaireName.textContent = "À faire";
 aFaireDiv.appendChild(aFaireName);
@@ -102,24 +99,57 @@ appDiv.appendChild(emptyDiv);
 const addTask = document.createElement("p");
 addTask.textContent = "+";
 addTask.classList.add("add-task");
-
 appDiv.appendChild(addTask);
 
-// Créer l'interface pour ajouter une tâche
 const taskInterface = document.createElement("div");
 taskInterface.classList.add("task-interface");
 
-const taskInput = document.createElement("input");
-taskInput.type = "text";
-taskInput.placeholder = "Nouvelle tâche...";
-taskInput.classList.add("task-input");
+const titleLabel = document.createElement("label");
+titleLabel.textContent = "Titre:";
+titleLabel.classList.add("titleLabel");
+const titleInput = document.createElement("input");
+titleInput.type = "text";
+titleInput.classList.add("taskTitle-input");
 
-const submitButton = document.createElement("button");
-submitButton.textContent = "Ajouter";
-submitButton.classList.add("submit-button");
+const descriptionLabel = document.createElement("label");
+descriptionLabel.textContent = "Description:";
+descriptionLabel.classList.add("descriptionLabel");
+const descriptionInput = document.createElement("textarea");
+descriptionInput.classList.add("taskDescription-input");
 
-taskInterface.appendChild(taskInput);
-taskInterface.appendChild(submitButton);
+const labelLabel = document.createElement("label");
+labelLabel.textContent = "Étiquettes:";
+labelLabel.classList.add("labelEtiquette");
+const labelDisplay = document.createElement("div");
+labelDisplay.classList.add("label-display");
+
+const addLabelButton = document.createElement("button");
+addLabelButton.textContent = "+ Étiquette";
+addLabelButton.classList.add("add-label-button");
+
+const closeButton = document.createElement("button");
+closeButton.textContent = "X";
+closeButton.classList.add("close-button");
+
+const saveButton = document.createElement("button");
+const saveImage = document.createElement("img");
+saveImage.src = "src/image/validate.svg";
+saveImage.alt = "Enregistrer";
+saveImage.width = 16;
+saveImage.height = 16;
+saveButton.appendChild(saveImage);
+saveButton.classList.add("save-button");
+
+taskInterface.appendChild(titleLabel);
+taskInterface.appendChild(titleInput);
+taskInterface.appendChild(descriptionLabel);
+taskInterface.appendChild(descriptionInput);
+taskInterface.appendChild(labelLabel);
+taskInterface.appendChild(labelDisplay);
+taskInterface.appendChild(addLabelButton);
+taskInterface.appendChild(closeButton);
+saveButton.appendChild(saveImage);
+taskInterface.appendChild(saveButton);
 appDiv.appendChild(taskInterface);
 
 // Créer un fond d'obscurcissement
@@ -127,28 +157,69 @@ const overlay = document.createElement("div");
 overlay.classList.add("overlay");
 appDiv.appendChild(overlay);
 
-// Gérer l'ouverture de l'interface lors du clic sur "addTask"
 addTask.addEventListener("click", () => {
-    overlay.style.display = "block"; // Afficher le fond d'obscurcissement
-    taskInterface.style.display = "block"; // Afficher l'interface
+    overlay.style.display = "block";
+    taskInterface.style.display = "grid";
 });
 
-// Gérer la soumission du formulaire d'interface
-submitButton.addEventListener("click", () => {
-    const newTaskText = taskInput.value.trim();
+closeButton.addEventListener("click", () => {
+    overlay.style.display = "none";
+    taskInterface.style.display = "none";
+});
 
-    if (newTaskText !== "") {
-        const newTaskElement = document.createElement("div");
-        newTaskElement.classList.add("task");
-        newTaskElement.textContent = newTaskText;
+saveButton.addEventListener("click", () => {
+    const newTask = {
+        title: titleInput.value,
+        description: descriptionInput.value,
+        // ... (autres propriétés comme les étiquettes)
+    };
 
-        // Ajoutez le nouvel élément de tâche à l'étape appropriée
-        // Par exemple, si vous voulez ajouter à l'étape "À faire":
-        aFaireItemsDiv.appendChild(newTaskElement);
+    const taskId = saveTaskToLocalStorage(newTask);
 
-        // Effacez le champ de saisie, masquez l'interface et le fond d'obscurcissement
-        taskInput.value = "";
-        taskInterface.style.display = "none";
-        overlay.style.display = "none";
+    titleInput.value = "";
+    descriptionInput.value = "";
+    taskInterface.style.display = "none";
+    overlay.style.display = "none";
+
+    displaySavedTask(taskId, newTask);
+});
+
+// Fonction pour sauvegarder la tâche dans le localStorage
+function saveTaskToLocalStorage(task) {
+    const taskId = `task-${Date.now()}`;
+    localStorage.setItem(taskId, JSON.stringify(task));
+    return taskId;
+}
+
+// Fonction pour afficher une tâche enregistrée
+function displaySavedTask(taskId, task) {
+    const taskDiv = document.createElement("div");
+    taskDiv.id = taskId;
+
+    const titleParagraph = document.createElement("p");
+    titleParagraph.textContent = task.title;
+
+    const labelDiv = document.createElement("div");
+    // ... (ajouter les étiquettes à labelDiv)
+
+    taskDiv.appendChild(titleParagraph);
+    taskDiv.appendChild(labelDiv);
+
+    aFaireDiv.appendChild(taskDiv);
+
+}
+
+// Fonction pour charger et afficher les tâches enregistrées au chargement de la page
+function loadSavedTasks() {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("task-")) {
+            const taskId = key;
+            const taskData = JSON.parse(localStorage.getItem(key));
+            displaySavedTask(taskId, taskData);
+        }
     }
-});
+}
+
+// Appeler la fonction pour charger les tâches au chargement de la page
+loadSavedTasks();

@@ -104,7 +104,62 @@ p {
 
 .task-interface {
   display: none;
-  /* ... (vos autres styles) */
+  position: fixed;
+  top: 50%; /* Centre verticalement */
+  left: 50%; /* Centre horizontalement */
+  transform: translate(-50%, -50%); /* Centre parfaitement */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 2000; /* Valeur plus élevée pour l'interface */
+  grid-template-columns: 22px 561px 20px 32px;
+  grid-template-rows: 18px 60px 33px 118px 25px 134px 39px 8px;
+  padding: 0;
+}
+
+.titleLabel {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.taskTitle-input {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.descriptionLabel {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.taskDescription-input {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.labelEtiquette {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+.label-display {
+  grid-column: 2;
+  grid-row: 6;
+}
+
+.add-label-button {
+  grid-column: 2;
+  grid-row: 7;
+}
+
+.close-button {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.save-button {
+  grid-column: 3/4;
+  grid-row: 7;
 }
 
 /*# sourceMappingURL=style.css.map */
