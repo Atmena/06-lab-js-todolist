@@ -15,7 +15,7 @@ searchInput.placeholder = "Rechercher une tâche...";
 searchInput.classList.add("search-input");
 
 const searchInputLabel = document.createElement("label");
-searchInputLabel.textContent = "Nom de la tâche";
+searchInputLabel.textContent = "Nom de la tâche  ";
 searchInputLabel.classList.add("search-input-label");
 searchInputLabel.appendChild(searchInput);
 
@@ -101,6 +101,54 @@ appDiv.appendChild(emptyDiv);
 
 const addTask = document.createElement("p");
 addTask.textContent = "+";
-addTask.classList.add("add-task"); 
+addTask.classList.add("add-task");
 
 appDiv.appendChild(addTask);
+
+// Créer l'interface pour ajouter une tâche
+const taskInterface = document.createElement("div");
+taskInterface.classList.add("task-interface");
+
+const taskInput = document.createElement("input");
+taskInput.type = "text";
+taskInput.placeholder = "Nouvelle tâche...";
+taskInput.classList.add("task-input");
+
+const submitButton = document.createElement("button");
+submitButton.textContent = "Ajouter";
+submitButton.classList.add("submit-button");
+
+taskInterface.appendChild(taskInput);
+taskInterface.appendChild(submitButton);
+appDiv.appendChild(taskInterface);
+
+// Créer un fond d'obscurcissement
+const overlay = document.createElement("div");
+overlay.classList.add("overlay");
+appDiv.appendChild(overlay);
+
+// Gérer l'ouverture de l'interface lors du clic sur "addTask"
+addTask.addEventListener("click", () => {
+    overlay.style.display = "block"; // Afficher le fond d'obscurcissement
+    taskInterface.style.display = "block"; // Afficher l'interface
+});
+
+// Gérer la soumission du formulaire d'interface
+submitButton.addEventListener("click", () => {
+    const newTaskText = taskInput.value.trim();
+
+    if (newTaskText !== "") {
+        const newTaskElement = document.createElement("div");
+        newTaskElement.classList.add("task");
+        newTaskElement.textContent = newTaskText;
+
+        // Ajoutez le nouvel élément de tâche à l'étape appropriée
+        // Par exemple, si vous voulez ajouter à l'étape "À faire":
+        aFaireItemsDiv.appendChild(newTaskElement);
+
+        // Effacez le champ de saisie, masquez l'interface et le fond d'obscurcissement
+        taskInput.value = "";
+        taskInterface.style.display = "none";
+        overlay.style.display = "none";
+    }
+});
