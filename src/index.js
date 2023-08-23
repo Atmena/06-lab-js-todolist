@@ -171,7 +171,6 @@ saveButton.addEventListener("click", () => {
     const newTask = {
         title: titleInput.value,
         description: descriptionInput.value,
-        // ... (autres propriétés comme les étiquettes)
     };
 
     const taskId = saveTaskToLocalStorage(newTask);
@@ -195,6 +194,7 @@ function saveTaskToLocalStorage(task) {
 function displaySavedTask(taskId, task) {
     const taskDiv = document.createElement("div");
     taskDiv.id = taskId;
+    taskDiv.classList = "task";
 
     const titleParagraph = document.createElement("p");
     titleParagraph.textContent = task.title;
@@ -205,8 +205,7 @@ function displaySavedTask(taskId, task) {
     taskDiv.appendChild(titleParagraph);
     taskDiv.appendChild(labelDiv);
 
-    aFaireDiv.appendChild(taskDiv);
-
+    aFaireItemsDiv.appendChild(taskDiv);
 }
 
 // Fonction pour charger et afficher les tâches enregistrées au chargement de la page

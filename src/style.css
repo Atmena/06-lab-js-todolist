@@ -1,6 +1,9 @@
 @charset "UTF-8";
 :root {
   font-family: "Itim", sans-serif;
+  --aFaire: #cc1717;
+  --enCours: #EFB110;
+  --termine: #4390D7;
 }
 
 body {
@@ -83,6 +86,8 @@ p {
   border-radius: 0.625rem;
   min-height: 8.75rem;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
 
 .add-task {
@@ -160,6 +165,22 @@ p {
 .save-button {
   grid-column: 3/4;
   grid-row: 7;
+}
+
+.task {
+  width: 235px;
+  height: 120px;
+  background-color: #fff;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 30px 30px 30px 30px;
+  grid-template-columns: 105px 105px 24px;
+  margin: 10px;
+}
+.task p {
+  background-color: var(--aFaire);
+  border-radius: 15px 15px 0 0;
+  grid-column: 1/5;
 }
 
 /*# sourceMappingURL=style.css.map */
