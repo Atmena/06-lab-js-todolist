@@ -102,163 +102,34 @@ addTask.classList.add("add-task");
 appDiv.appendChild(addTask);
 
 const taskInterface = document.createElement("div");
-taskInterface.classList.add("task-interface");
+    taskInterface.classList.add("task-interface");
 
-const titleLabel = document.createElement("label");
-titleLabel.textContent = "Titre:";
-titleLabel.classList.add("titleLabel");
-const titleInput = document.createElement("input");
-titleInput.type = "text";
-titleInput.classList.add("taskTitle-input");
+    const titleLabel = document.createElement("label");
+    titleLabel.textContent = "Titre:";
+    titleLabel.classList.add("titleLabel");
+    const titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.classList.add("taskTitle-input");
 
-const descriptionLabel = document.createElement("label");
-descriptionLabel.textContent = "Description:";
-descriptionLabel.classList.add("descriptionLabel");
-const descriptionInput = document.createElement("textarea");
-descriptionInput.classList.add("taskDescription-input");
+    const descriptionLabel = document.createElement("label");
+    descriptionLabel.textContent = "Description:";
+    descriptionLabel.classList.add("descriptionLabel");
+    const descriptionInput = document.createElement("textarea");
+    descriptionInput.classList.add("taskDescription-input");
 
-const labelLabel = document.createElement("label");
-labelLabel.textContent = "Étiquettes:";
-labelLabel.classList.add("labelEtiquette");
-const labelDisplay = document.createElement("div");
-labelDisplay.classList.add("label-display");
+    const labelLabel = document.createElement("label");
+    labelLabel.textContent = "Étiquettes:";
+    labelLabel.classList.add("labelEtiquette");
+    const labelDisplay = document.createElement("div");
+    labelDisplay.classList.add("label-display");
 
-const addLabelButton = document.createElement("button");
-addLabelButton.textContent = "+ Étiquette";
-addLabelButton.classList.add("add-label-button");
+    const addLabelButton = document.createElement("button");
+    addLabelButton.textContent = "+ Étiquette";
+    addLabelButton.classList.add("add-label-button");
 
-const closeButton = document.createElement("button");
-closeButton.textContent = "X";
-closeButton.classList.add("close-button");
-
-const saveButton = document.createElement("button");
-const saveImage = document.createElement("img");
-saveImage.src = "src/image/validate.svg";
-saveImage.alt = "Enregistrer";
-saveImage.width = 16;
-saveImage.height = 16;
-saveButton.appendChild(saveImage);
-saveButton.classList.add("save-button");
-
-taskInterface.appendChild(titleLabel);
-taskInterface.appendChild(titleInput);
-taskInterface.appendChild(descriptionLabel);
-taskInterface.appendChild(descriptionInput);
-taskInterface.appendChild(labelLabel);
-taskInterface.appendChild(labelDisplay);
-taskInterface.appendChild(addLabelButton);
-taskInterface.appendChild(closeButton);
-taskInterface.appendChild(saveButton);
-appDiv.appendChild(taskInterface);
-
-const overlay = document.createElement("div");
-overlay.classList.add("overlay");
-appDiv.appendChild(overlay);
-
-addTask.addEventListener("click", () => {
-    overlay.style.display = "block";
-    taskInterface.style.display = "grid";
-});
-
-closeButton.addEventListener("click", () => {
-    overlay.style.display = "none";
-    taskInterface.style.display = "none";
-});
-
-saveButton.addEventListener("click", () => {
-    const newTask = {
-        title: titleInput.value,
-        description: descriptionInput.value,
-    };
-
-    const taskId = saveTaskToLocalStorage(newTask);
-
-    titleInput.value = "";
-    descriptionInput.value = "";
-    taskInterface.style.display = "none";
-    overlay.style.display = "none";
-
-    displaySavedTask(taskId, newTask);
-});
-
-function saveTaskToLocalStorage(task) {
-    const taskId = `task-${Date.now()}`;
-    localStorage.setItem(taskId, JSON.stringify(task));
-    return taskId;
-}
-
-function displaySavedTask(taskId, task) {
-    const taskDiv = document.createElement("div");
-    taskDiv.classList.add("task", "draggable-element");
-    taskDiv.id = taskId;
-
-    const titleParagraph = document.createElement("p");
-    titleParagraph.textContent = task.title;
-
-    const labelDiv = document.createElement("div");
-
-    const infoIcon = document.createElement("img");
-    infoIcon.src = "src/image/information.svg";
-    infoIcon.alt = "Information";
-    infoIcon.style.height = "20px"
-    infoIcon.style.width = "20px"
-    infoIcon.classList.add("icon","info");
-    infoIcon.addEventListener("click", () => {
-        openInfoInterface(task);
-    });
-
-
-    const editIcon = document.createElement("img");
-    editIcon.src = "src/image/pencil.svg";
-    editIcon.alt = "Edit";
-    editIcon.style.height = "20px"
-    editIcon.style.width = "20px"
-    editIcon.classList.add("icon","edit");
-    editIcon.addEventListener("click", () => {
-        openEditInterface(taskId, task);
-    });
-
-    const deleteIcon = document.createElement("img");
-    deleteIcon.src = "src/image/trash_close.png";
-    deleteIcon.alt = "Delete";
-    deleteIcon.style.height = "20px"
-    deleteIcon.style.width = "20px"
-    deleteIcon.classList.add("icon","trash");
-    deleteIcon.addEventListener("click", () => {
-        deleteTask(taskId);
-    });
-
-    taskDiv.appendChild(titleParagraph);
-    taskDiv.appendChild(labelDiv);
-    taskDiv.appendChild(infoIcon);
-    taskDiv.appendChild(editIcon);
-    taskDiv.appendChild(deleteIcon);
-
-    aFaireItemsDiv.appendChild(taskDiv);
-}
-
-closeButton.addEventListener("click", () => {
-    infoInterface.remove();
-    overlay.style.display = "none"; // Cacher l'overlay
-});
-
-function openEditInterface(taskId, task) {
-    // Créer l'interface d'édition
-    const editInterface = document.createElement("div");
-    editInterface.classList.add("edit-interface");
-
-    const editedTitleLabel = document.createElement("label");
-    editedTitleLabel.textContent = "Titre:";
-    const editedTitleInput = document.createElement("input");
-    editedTitleInput.type = "text";
-    editedTitleInput.value = task.title;
-    editedTitleInput.classList.add("edited-title-input");
-
-    const editedDescriptionLabel = document.createElement("label");
-    editedDescriptionLabel.textContent = "Description:";
-    const editedDescriptionInput = document.createElement("textarea");
-    editedDescriptionInput.value = task.description;
-    editedDescriptionInput.classList.add("edited-description-input");
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "X";
+    closeButton.classList.add("close-button");
 
     const saveButton = document.createElement("button");
     const saveImage = document.createElement("img");
@@ -268,90 +139,273 @@ function openEditInterface(taskId, task) {
     saveImage.height = 16;
     saveButton.appendChild(saveImage);
     saveButton.classList.add("save-button");
-    saveButton.addEventListener("click", () => {
-        // Mettre à jour les propriétés de la tâche
-        const updatedTask = {
-            ...task, // Conserver les propriétés existantes
-            title: editedTitleInput.value,
-            description: editedDescriptionInput.value,
-        };
 
-        updateTask(taskId, updatedTask); // Appeler la fonction pour mettre à jour la tâche
-        editInterface.remove();
+    taskInterface.appendChild(titleLabel);
+    taskInterface.appendChild(titleInput);
+    taskInterface.appendChild(descriptionLabel);
+    taskInterface.appendChild(descriptionInput);
+    taskInterface.appendChild(labelLabel);
+    taskInterface.appendChild(labelDisplay);
+    taskInterface.appendChild(addLabelButton);
+    taskInterface.appendChild(closeButton);
+    taskInterface.appendChild(saveButton);
+    appDiv.appendChild(taskInterface);
+
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    appDiv.appendChild(overlay);
+
+    addTask.addEventListener("click", () => {
+        overlay.style.display = "block";
+        taskInterface.style.display = "grid";
     });
 
-    editInterface.appendChild(editedTitleLabel);
-    editInterface.appendChild(editedTitleInput);
-    editInterface.appendChild(editedDescriptionLabel);
-    editInterface.appendChild(editedDescriptionInput);
+    closeButton.addEventListener("click", () => {
+        overlay.style.display = "none";
+        taskInterface.style.display = "none";
+    });
 
-    editInterface.appendChild(saveButton);
+    saveButton.addEventListener("click", () => {
+        const newTask = {
+            title: titleInput.value,
+            description: descriptionInput.value,
+        };
 
-    document.body.appendChild(editInterface);
-}
+        const taskId = saveTaskToLocalStorage(newTask);
 
-function updateTask(taskId, updatedTask) {
-    // Mettre à jour la tâche dans le localStorage (à compléter)
-    localStorage.setItem(taskId, JSON.stringify(updatedTask));
+        titleInput.value = "";
+        descriptionInput.value = "";
+        taskInterface.style.display = "none";
+        overlay.style.display = "none";
 
-    // Mettre à jour l'affichage en supprimant la tâche de l'interface et en la recréant (à compléter)
-    const taskElement = document.getElementById(taskId);
-    if (taskElement) {
-        taskElement.remove();
-        displaySavedTask(taskId, updatedTask);
+        displaySavedTask(taskId, newTask);
+    });
+
+    function saveTaskToLocalStorage(task) {
+        const taskId = `task-${Date.now()}`;
+        localStorage.setItem(taskId, JSON.stringify(task));
+        return taskId;
     }
-}
 
-function openInfoInterface(task) {
-    // Créer l'interface d'informations similaire à celle de la création de tâche
-    const infoInterface = document.createElement("div");
-    infoInterface.classList.add("info-interface");
+    function displaySavedTask(taskId, task) {
+        const taskDiv = document.createElement("div");
+        taskDiv.classList.add("task", "draggable-element");
+        taskDiv.id = taskId;
 
-    const closeButton = document.createElement("button");
-    closeButton.textContent = "X";
-    closeButton.classList.add("close-button");
+        const titleParagraph = document.createElement("p");
+        titleParagraph.textContent = task.title;
+
+        const labelDiv = document.createElement("div");
+
+        const infoIcon = document.createElement("img");
+        infoIcon.src = "src/image/information.svg";
+        infoIcon.alt = "Information";
+        infoIcon.style.height = "20px"
+        infoIcon.style.width = "20px"
+        infoIcon.classList.add("icon","info");
+        infoIcon.addEventListener("click", () => {
+            openInfoInterface(task);
+        });
+
+        const editIcon = document.createElement("img");
+        editIcon.src = "src/image/pencil.svg";
+        editIcon.alt = "Edit";
+        editIcon.style.height = "20px"
+        editIcon.style.width = "20px"
+        editIcon.classList.add("icon","edit");
+        editIcon.addEventListener("click", () => {
+            openEditInterface(taskId, task);
+        });
+
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = "src/image/trash_close.png";
+        deleteIcon.alt = "Delete";
+        deleteIcon.style.height = "20px"
+        deleteIcon.style.width = "20px"
+        deleteIcon.classList.add("icon","trash");
+        deleteIcon.addEventListener("click", () => {
+            deleteTask(taskId);
+        });
+
+        taskDiv.appendChild(titleParagraph);
+        taskDiv.appendChild(labelDiv);
+        taskDiv.appendChild(infoIcon);
+        taskDiv.appendChild(editIcon);
+        taskDiv.appendChild(deleteIcon);
+
+        aFaireItemsDiv.appendChild(taskDiv);
+    }
+
     closeButton.addEventListener("click", () => {
         infoInterface.remove();
         overlay.style.display = "none"; // Cacher l'overlay
     });
 
-    infoInterface.appendChild(titleLabel);
-    infoInterface.appendChild(titleInput);
-    infoInterface.appendChild(descriptionLabel);
-    infoInterface.appendChild(descriptionInput);
-    infoInterface.appendChild(labelLabel);
-    infoInterface.appendChild(labelDisplay);
-    infoInterface.appendChild(closeButton);
+    function openEditInterface(taskId, task) {
+        // Créer l'interface d'édition
+        const editInterface = document.createElement("div");
+        editInterface.classList.add("edit-interface");
 
-    document.body.appendChild(infoInterface);
+        const editedTitleLabel = document.createElement("label");
+        editedTitleLabel.textContent = "Titre:";
+        const editedTitleInput = document.createElement("input");
+        editedTitleInput.type = "text";
+        editedTitleInput.value = task.title;
+        editedTitleInput.classList.add("edited-title-input");
 
-    // Afficher l'overlay sombre
-    overlay.style.display = "block";
+        const editedDescriptionLabel = document.createElement("label");
+        editedDescriptionLabel.textContent = "Description:";
+        const editedDescriptionInput = document.createElement("textarea");
+        editedDescriptionInput.value = task.description;
+        editedDescriptionInput.classList.add("edited-description-input");
 
-    // Afficher l'interface d'informations
-    infoInterface.style.display = "grid"; // Utiliser "grid" pour afficher l'interface
-}
+        const saveButton = document.createElement("button");
+        const saveImage = document.createElement("img");
+        saveImage.src = "src/image/validate.svg";
+        saveImage.alt = "Enregistrer";
+        saveImage.width = 16;
+        saveImage.height = 16;
+        saveButton.appendChild(saveImage);
+        saveButton.classList.add("save-button");
+        saveButton.addEventListener("click", () => {
+            // Mettre à jour les propriétés de la tâche
+            const updatedTask = {
+                ...task, // Conserver les propriétés existantes
+                title: editedTitleInput.value,
+                description: editedDescriptionInput.value,
+            };
 
-function deleteTask(taskId) {
-    // Supprimer la tâche du localStorage
-    localStorage.removeItem(taskId);
+            updateTask(taskId, updatedTask); // Appeler la fonction pour mettre à jour la tâche
+            editInterface.remove();
+        });
 
-    // Mettre à jour l'affichage en supprimant la tâche de l'interface
-    const taskElement = document.getElementById(taskId);
-    if (taskElement) {
-        taskElement.remove();
+        editInterface.appendChild(editedTitleLabel);
+        editInterface.appendChild(editedTitleInput);
+        editInterface.appendChild(editedDescriptionLabel);
+        editInterface.appendChild(editedDescriptionInput);
+
+        editInterface.appendChild(saveButton);
+
+        document.body.appendChild(editInterface);
     }
-}
 
-function loadSavedTasks() {
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith("task-")) {
-            const taskId = key;
-            const taskData = JSON.parse(localStorage.getItem(key));
-            displaySavedTask(taskId, taskData);
+    function openInfoInterface(taskId) {
+        const keyToRetrieve = taskId;
+        const storedData = localStorage.getItem(keyToRetrieve);
+    
+        const infoInterface = document.createElement("div");
+        infoInterface.classList.add("info-interface");
+    
+        let infoTitleDisplay = document.querySelector(".taskTitle-display");
+        let infoDescriptionDisplay = document.querySelector(".taskDescription-display");
+    
+        if (!infoTitleDisplay) {
+            infoTitleDisplay = document.createElement("p");
+            infoTitleDisplay.classList.add("taskTitle-display");
+        }
+    
+        if (!infoDescriptionDisplay) {
+            infoDescriptionDisplay = document.createElement("p");
+            infoDescriptionDisplay.classList.add("taskDescription-display");
+        }
+    
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+    
+            // Afficher les données récupérées dans les éléments d'affichage
+            infoTitleDisplay.textContent = "Titre : " + parsedData.title;
+            infoDescriptionDisplay.textContent = "Description : " + parsedData.description;
+        } else {
+            console.log('Aucune donnée trouvée dans le localStorage pour la clé :', keyToRetrieve);
+        }
+    
+        // Ajouter les éléments d'affichage à l'élément "info-interface"
+        infoInterface.appendChild(infoTitleDisplay);
+        infoInterface.appendChild(infoDescriptionDisplay);
+    
+        // Ajouter le bouton de fermeture
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.classList.add("close-button");
+        closeButton.addEventListener("click", () => {
+            infoInterface.remove();
+            overlay.style.display = "none"; // Cacher l'overlay
+        });
+        infoInterface.appendChild(closeButton);
+    
+        // Ajouter l'interface d'informations au body
+        document.body.appendChild(infoInterface);
+    
+        // Afficher l'overlay sombre
+        overlay.style.display = "block";
+    
+        // Afficher l'interface d'informations
+        infoInterface.style.display = "grid"; // Utiliser "grid" pour afficher l'interface
+    
+        const infoTitleLabel = document.createElement("label");
+        infoTitleLabel.textContent = "Titre:";
+        infoTitleLabel.classList.add("titleLabel");
+    
+        const infoDescriptionLabel = document.createElement("label");
+        infoDescriptionLabel.textContent = "Description:";
+        infoDescriptionLabel.classList.add("descriptionLabel");
+    
+        const infoLabelLabel = document.createElement("label");
+        infoLabelLabel.textContent = "Étiquettes:";
+        infoLabelLabel.classList.add("labelEtiquette");
+    
+        const infoLabelDisplay = document.createElement("div");
+        infoLabelDisplay.classList.add("label-display");
+    
+        infoInterface.appendChild(infoTitleLabel);
+        infoInterface.appendChild(infoTitleDisplay);
+        infoInterface.appendChild(infoDescriptionLabel);
+        infoInterface.appendChild(infoDescriptionDisplay);
+        infoInterface.appendChild(infoLabelLabel);
+        infoInterface.appendChild(infoLabelDisplay);
+        infoInterface.appendChild(closeButton);
+    
+        document.body.appendChild(infoInterface);
+    
+        // Afficher l'overlay sombre
+        overlay.style.display = "block";
+    
+        // Afficher l'interface d'informations
+        infoInterface.style.display = "grid"; // Utiliser "grid" pour afficher l'interface
+    }    
+
+    function updateTask(taskId, updatedTask) {
+        // Mettre à jour la tâche dans le localStorage (à compléter)
+        localStorage.setItem(taskId, JSON.stringify(updatedTask));
+
+        // Mettre à jour l'affichage en supprimant la tâche de l'interface et en la recréant (à compléter)
+        const taskElement = document.getElementById(taskId);
+        if (taskElement) {
+            taskElement.remove();
+            displaySavedTask(taskId, updatedTask);
         }
     }
-}
 
-loadSavedTasks();
+    function deleteTask(taskId) {
+        // Supprimer la tâche du localStorage
+        localStorage.removeItem(taskId);
+
+        // Mettre à jour l'affichage en supprimant la tâche de l'interface
+        const taskElement = document.getElementById(taskId);
+        if (taskElement) {
+            taskElement.remove();
+        }
+    }
+
+    function loadSavedTasks() {
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith("task-")) {
+                const taskId = key;
+                const taskData = JSON.parse(localStorage.getItem(key));
+                displaySavedTask(taskId, taskData);
+            }
+        }
+    }
+
+    loadSavedTasks();
