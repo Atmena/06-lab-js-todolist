@@ -224,4 +224,14 @@ p {
   padding: 0 0.6875rem;
 }
 
+.taskTitle-display {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.taskDescription-display {
+  grid-column: 2/4;
+  grid-row: 5;
+}
+
 /*# sourceMappingURL=style.css.map */

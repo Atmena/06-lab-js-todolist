@@ -204,7 +204,7 @@ const taskInterface = document.createElement("div");
         infoIcon.style.width = "20px"
         infoIcon.classList.add("icon","info");
         infoIcon.addEventListener("click", () => {
-            openInfoInterface(task);
+            openInfoInterface(taskId ,task);
         });
 
         const editIcon = document.createElement("img");
@@ -289,7 +289,7 @@ const taskInterface = document.createElement("div");
         document.body.appendChild(editInterface);
     }
 
-    function openInfoInterface(taskId) {
+    function openInfoInterface(taskId, task) {
         const keyToRetrieve = taskId;
         const storedData = localStorage.getItem(keyToRetrieve);
     
@@ -302,21 +302,13 @@ const taskInterface = document.createElement("div");
         if (!infoTitleDisplay) {
             infoTitleDisplay = document.createElement("p");
             infoTitleDisplay.classList.add("taskTitle-display");
+            infoTitleDisplay.textContent = task.title;
         }
     
         if (!infoDescriptionDisplay) {
             infoDescriptionDisplay = document.createElement("p");
             infoDescriptionDisplay.classList.add("taskDescription-display");
-        }
-    
-        if (storedData) {
-            const parsedData = JSON.parse(storedData);
-    
-            // Afficher les données récupérées dans les éléments d'affichage
-            infoTitleDisplay.textContent = "Titre : " + parsedData.title;
-            infoDescriptionDisplay.textContent = "Description : " + parsedData.description;
-        } else {
-            console.log('Aucune donnée trouvée dans le localStorage pour la clé :', keyToRetrieve);
+            infoDescriptionDisplay.textContent = task.description;
         }
     
         // Ajouter les éléments d'affichage à l'élément "info-interface"
