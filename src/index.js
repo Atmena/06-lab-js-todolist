@@ -285,6 +285,7 @@ function openEditInterface(taskId, task) {
 
         updateTask(taskId, updatedTask); // Appeler la fonction pour mettre à jour la tâche
         editInterface.remove();
+        overlay.style.display = "none"; // Cacher l'overlay
     });
 
     editInterface.appendChild(editedTitleLabel);
@@ -295,6 +296,12 @@ function openEditInterface(taskId, task) {
     editInterface.appendChild(saveButton);
 
     document.body.appendChild(editInterface);
+
+    // Afficher l'overlay sombre
+    overlay.style.display = "block";
+    
+    // Afficher l'interface d'informations
+    editInterface.style.display = "grid";
 }
 
 function openInfoInterface(taskId, task) {

@@ -137,6 +137,21 @@ p {
   padding: 0;
 }
 
+.edit-interface {
+  display: none;
+  position: fixed;
+  top: 50%; /* Centre verticalement */
+  left: 50%; /* Centre horizontalement */
+  transform: translate(-50%, -50%); /* Centre parfaitement */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 2000; /* Valeur plus élevée pour l'interface */
+  grid-template-columns: 22px 56px 518px 20px 32px;
+  grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
+  padding: 0;
+}
+
 .titleLabel {
   grid-column: 2;
   grid-row: 2;
