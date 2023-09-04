@@ -7,10 +7,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cardo&family=Fira+Sans&family=Inconsolata&family=Itim&display=swap" rel="stylesheet">
-    <script type="module" src="src/index.js" defer async></script>
+    <script type="module" src="src/index.js" defer></script>
     <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
     <div id="app"></div>
 </body>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+        
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+        
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
 </html>
