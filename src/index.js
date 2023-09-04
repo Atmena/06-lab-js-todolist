@@ -65,7 +65,7 @@ aFaireName.textContent = "À faire";
 aFaireDiv.appendChild(aFaireName);
 
 const aFaireItemsDiv = document.createElement("div");
-aFaireItemsDiv.classList.add("toDo");
+aFaireItemsDiv.classList.add("toDo", "aFaire");
 aFaireItemsDiv.setAttribute('ondrop', "drop(event)")
 aFaireItemsDiv.setAttribute('ondragover', "allowDrop(event)")
 aFaireDiv.appendChild(aFaireItemsDiv);
@@ -78,7 +78,7 @@ enCoursName.textContent = "En cours";
 enCoursDiv.appendChild(enCoursName);
 
 const enCoursItemsDiv = document.createElement("div");
-enCoursItemsDiv.classList.add("toDo");
+enCoursItemsDiv.classList.add("toDo", "enCours");
 enCoursItemsDiv.setAttribute('ondrop', "drop(event)")
 enCoursItemsDiv.setAttribute('ondragover', "allowDrop(event)")
 enCoursDiv.appendChild(enCoursItemsDiv);
@@ -91,7 +91,7 @@ termineName.textContent = "Terminé";
 termineDiv.appendChild(termineName);
 
 const termineItemsDiv = document.createElement("div");
-termineItemsDiv.classList.add("toDo");
+termineItemsDiv.classList.add("toDo", "terminé");
 termineItemsDiv.setAttribute('ondrop', "drop(event)")
 termineItemsDiv.setAttribute('ondragover', "allowDrop(event)")
 termineDiv.appendChild(termineItemsDiv);

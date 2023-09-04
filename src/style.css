@@ -233,10 +233,21 @@ p {
   margin: 10px;
 }
 .task p {
-  background-color: var(--aFaire);
   border-radius: 15px 15px 0 0;
   grid-column: 1/5;
   padding: 0 0.6875rem;
+}
+
+.aFaire div p {
+  background-color: var(--aFaire);
+}
+
+.enCours div p {
+  background-color: var(--enCours);
+}
+
+.terminé div p {
+  background-color: var(--termine);
 }
 
 .taskTitle-display {
