@@ -196,12 +196,24 @@ function saveTaskToLocalStorage(task) {
 function displaySavedTask(taskId, task) {
     const taskDiv = document.createElement("div");
     taskDiv.classList.add("task");
-    taskDiv.setAttribute('draggable','true');
-    taskDiv.setAttribute('ondragstart','drag(event)');
+    taskDiv.setAttribute('draggable', 'true');
+    taskDiv.setAttribute('ondragstart', 'drag(event)');
+    taskDiv.addEventListener('dragstart', (ev) => {
+        drag(ev, taskId);
+    });
     taskDiv.id = taskId;
 
     const titleParagraph = document.createElement("p");
-    titleParagraph.textContent = task.title;
+
+    // Limitez le nombre de caractères à afficher (par exemple, 30 caractères)
+    const maxLength = 22;
+    let truncatedTitle = task.title;
+
+    if (task.title.length > maxLength) {
+        truncatedTitle = task.title.substring(0, maxLength) + "...";
+    }
+
+    titleParagraph.textContent = truncatedTitle;
 
     const labelDiv = document.createElement("div");
 
@@ -242,6 +254,22 @@ function displaySavedTask(taskId, task) {
     taskDiv.appendChild(deleteIcon);
 
     aFaireItemsDiv.appendChild(taskDiv);
+
+    // Récupérez la bonne div en fonction de l'état de la tâche (à faire, en cours, terminée) et ajoutez-la là-bas.
+    const taskState = task.state;
+    let targetDiv;
+
+    if (taskState === "aFaire") {
+        targetDiv = aFaireItemsDiv;
+    } else if (taskState === "enCours") {
+        targetDiv = enCoursItemsDiv;
+    } else if (taskState === "termine") {
+        targetDiv = termineItemsDiv; // Vous avez utilisé "termineItems" au lieu de "termineItemsDiv"
+    }
+
+    if (targetDiv) {
+        targetDiv.appendChild(taskDiv);
+    }
 }
 
 closeButton.addEventListener("click", () => {
@@ -414,5 +442,32 @@ function loadSavedTasks() {
         }
     }
 }
+
+// Ajoutez un gestionnaire d'événement pour la saisie dans la barre de recherche
+searchInput.addEventListener("input", function () {
+    const searchText = searchInput.value.toLowerCase(); // Obtenez le texte saisi par l'utilisateur en minuscules
+    const taskContainer = document.getElementById("app");
+
+    // Supprimez toutes les tâches actuellement affichées
+    const tasks = document.querySelectorAll(".task");
+    tasks.forEach((task) => {
+        task.remove();
+    });
+
+    // Parcourez les éléments stockés localement et affichez uniquement les tâches correspondant à la recherche
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("task-")) {
+            const taskData = JSON.parse(localStorage.getItem(key));
+
+            // Vérifiez si la valeur du titre correspond à la recherche
+            if (taskData.title.toLowerCase().includes(searchText)) {
+                // Si une correspondance est trouvée, affichez la tâche
+                displaySavedTask(key, taskData);
+            }
+        }
+    }
+});
+
 
 loadSavedTasks();
