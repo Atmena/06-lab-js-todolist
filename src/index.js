@@ -129,20 +129,102 @@ labelLabel.classList.add("labelEtiquette");
 const labelDisplay = document.createElement("div");
 labelDisplay.classList.add("label-display");
 
+
 const addLabelButton = document.createElement("button");
 addLabelButton.textContent = "+ Étiquette";
 addLabelButton.classList.add("add-label-button");
+addLabelButton.addEventListener("click", () => {
+    // Ouvrir une nouvelle page ou une fenêtre modale pour gérer les étiquettes
+    openLabelManagementPage();
+});
 
-const closeButton = document.createElement("button");
+// Fonction pour ouvrir la page de gestion des étiquettes
+function openLabelManagementPage() {
+    // Créez une interface pour gérer les étiquettes
+    const labelManagementPage = document.createElement("div");
+    labelManagementPage.classList.add("label-management-page");
+
+    // Créez un formulaire pour créer une nouvelle étiquette
+    const createLabelForm = document.createElement("form");
+    createLabelForm.classList.add("create-label-form");
+
+    const labelNameInput = document.createElement("input");
+    labelNameInput.type = "text";
+    labelNameInput.placeholder = "Nom de l'étiquette";
+    labelNameInput.classList.add("label-name-input");
+
+    const labelColorInput = document.createElement("input");
+    labelColorInput.type = "color";
+    labelColorInput.classList.add("label-color-input");
+
+    const createLabelButton = document.createElement("button");
+    createLabelButton.textContent = "Créer une étiquette";
+    createLabelButton.classList.add("create-label-button");
+
+    createLabelForm.appendChild(labelNameInput);
+    createLabelForm.appendChild(labelColorInput);
+    createLabelForm.appendChild(createLabelButton);
+
+    // Créez une section pour afficher les étiquettes existantes
+    const existingLabelsSection = document.createElement("div");
+    existingLabelsSection.classList.add("existing-labels-section");
+
+function getExistingLabels(){
+    return document.querySelectorAll("div")
+}
+
+    // Affichez les étiquettes existantes
+    const existingLabels = getExistingLabels();
+    existingLabels.forEach((label) => {
+        const labelItem = document.createElement("div");
+        labelItem.classList.add("label-item");
+
+        const labelColor = document.createElement("div");
+        labelColor.style.backgroundColor = label.color;
+        labelColor.classList.add("color-box");
+
+        const labelName = document.createElement("span");
+        labelName.textContent = label.name;
+
+        labelItem.appendChild(labelColor);
+        labelItem.appendChild(labelName);
+
+        existingLabelsSection.appendChild(labelItem);
+    });
+
+    // Ajoutez un gestionnaire d'événement pour créer une nouvelle étiquette
+    createLabelButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const newLabelName = labelNameInput.value;
+        const newLabelColor = labelColorInput.value;
+
+        if (newLabelName && newLabelColor) {
+            addNewLabel(newLabelName, newLabelColor);
+            labelNameInput.value = "";
+            labelColorInput.value = "";
+            displayLabelsInManagementPage();
+        }
+    });
+
+    // Ajoutez la section de gestion des étiquettes à la page principale
+    labelManagementPage.appendChild(createLabelForm);
+    labelManagementPage.appendChild(existingLabelsSection);
+
+    // Affichez la page de gestion des étiquettes avec l'overlay
+    overlay.style.display = "block";
+    appDiv.appendChild(labelManagementPage);
+}
+
+const closeButton = document.createElement("p");
 closeButton.textContent = "X";
 closeButton.classList.add("close-button");
 
-const saveButton = document.createElement("button");
+const saveButton = document.createElement("p");
 const saveImage = document.createElement("img");
 saveImage.src = "src/image/validate.svg";
 saveImage.alt = "Enregistrer";
-saveImage.width = 16;
-saveImage.height = 16;
+saveImage.width = 32;
+saveImage.height = 32;
 saveButton.appendChild(saveImage);
 saveButton.classList.add("save-button");
 
@@ -175,6 +257,7 @@ saveButton.addEventListener("click", () => {
     const newTask = {
         title: titleInput.value,
         description: descriptionInput.value,
+        state: "aFaire",
     };
 
     const taskId = saveTaskToLocalStorage(newTask);
@@ -264,11 +347,23 @@ function displaySavedTask(taskId, task) {
     } else if (taskState === "enCours") {
         targetDiv = enCoursItemsDiv;
     } else if (taskState === "termine") {
-        targetDiv = termineItemsDiv; // Vous avez utilisé "termineItems" au lieu de "termineItemsDiv"
+        targetDiv = termineItemsDiv;
     }
 
     if (targetDiv) {
         targetDiv.appendChild(taskDiv);
+
+        // Créer un nouvel objet avec toutes les propriétés de 'task' et mettre à jour 'state'
+        const updatedTask = {
+            ...task,  // Copier toutes les propriétés de l'objet task
+            state: `${taskState}`  // Mettre à jour la propriété "state" selon votre besoin
+        };
+
+        // Réaffecter cet objet complet dans le stockage local
+        const taskId = taskDiv.id;
+        localStorage.setItem(taskId, JSON.stringify(updatedTask));
+
+        console.log(updatedTask);
     }
 }
 
@@ -295,12 +390,12 @@ function openEditInterface(taskId, task) {
     editedDescriptionInput.value = task.description;
     editedDescriptionInput.classList.add("edited-description-input");
 
-    const saveButton = document.createElement("button");
+    const saveButton = document.createElement("p");
     const saveImage = document.createElement("img");
     saveImage.src = "src/image/validate.svg";
     saveImage.alt = "Enregistrer";
-    saveImage.width = 16;
-    saveImage.height = 16;
+    saveImage.width = 32;
+    saveImage.height = 32;
     saveButton.appendChild(saveImage);
     saveButton.classList.add("save-button");
     saveButton.addEventListener("click", () => {
@@ -359,7 +454,7 @@ function openInfoInterface(taskId, task) {
     infoInterface.appendChild(infoDescriptionDisplay);
 
     // Ajouter le bouton de fermeture
-    const closeButton = document.createElement("button");
+    const closeButton = document.createElement("p");
     closeButton.textContent = "X";
     closeButton.classList.add("close-button");
     closeButton.addEventListener("click", () => {
@@ -422,13 +517,18 @@ function updateTask(taskId, updatedTask) {
 }
 
 function deleteTask(taskId) {
-    // Supprimer la tâche du localStorage
-    localStorage.removeItem(taskId);
+    // Demander une confirmation avant de supprimer
+    const confirmation = window.confirm("Êtes-vous sûr de vouloir supprimer cette tâche ?");
 
-    // Mettre à jour l'affichage en supprimant la tâche de l'interface
-    const taskElement = document.getElementById(taskId);
-    if (taskElement) {
-        taskElement.remove();
+    if (confirmation) {
+        // Supprimer la tâche du localStorage
+        localStorage.removeItem(taskId);
+
+        // Mettre à jour l'affichage en supprimant la tâche de l'interface
+        const taskElement = document.getElementById(taskId);
+        if (taskElement) {
+            taskElement.remove();
+        }
     }
 }
 
@@ -468,6 +568,5 @@ searchInput.addEventListener("input", function () {
         }
     }
 });
-
 
 loadSavedTasks();
