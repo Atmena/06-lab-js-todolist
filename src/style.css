@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root {
   font-family: "Itim", sans-serif;
+  font-size: 1rem;
   --aFaire: #cc1717;
   --enCours: #EFB110;
   --termine: #4390D7;
@@ -115,7 +116,7 @@ p {
   transform: translate(-50%, -50%); /* Centre parfaitement */
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   z-index: 2000; /* Valeur plus élevée pour l'interface */
   grid-template-columns: 22px 56px 518px 20px 32px;
   grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
@@ -130,7 +131,7 @@ p {
   transform: translate(-50%, -50%); /* Centre parfaitement */
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   z-index: 2000; /* Valeur plus élevée pour l'interface */
   grid-template-columns: 22px 56px 518px 20px 32px;
   grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
@@ -192,6 +193,7 @@ p {
   grid-column: 4;
   grid-row: 2;
   cursor: pointer;
+  margin-left: 1rem;
 }
 
 .save-button {
@@ -253,9 +255,31 @@ p {
 .taskTitle-display {
   grid-column: 3;
   grid-row: 2;
+  font-size: 1rem;
 }
 
 .taskDescription-display {
+  grid-column: 2/4;
+  grid-row: 5;
+  font-size: 1rem;
+}
+
+.edited-title {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.edited-title-input {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.edited-description {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+.edited-description-input {
   grid-column: 2/4;
   grid-row: 5;
 }

@@ -379,6 +379,7 @@ function openEditInterface(taskId, task) {
 
     const editedTitleLabel = document.createElement("label");
     editedTitleLabel.textContent = "Titre:";
+    editedTitleLabel.classList = "edited-title"
     const editedTitleInput = document.createElement("input");
     editedTitleInput.type = "text";
     editedTitleInput.value = task.title;
@@ -386,6 +387,7 @@ function openEditInterface(taskId, task) {
 
     const editedDescriptionLabel = document.createElement("label");
     editedDescriptionLabel.textContent = "Description:";
+    editedDescriptionLabel.classList = "edited-description"
     const editedDescriptionInput = document.createElement("textarea");
     editedDescriptionInput.value = task.description;
     editedDescriptionInput.classList.add("edited-description-input");
@@ -410,6 +412,15 @@ function openEditInterface(taskId, task) {
         editInterface.remove();
         overlay.style.display = "none"; // Cacher l'overlay
     });
+
+    const closeButton = document.createElement("p");
+    closeButton.textContent = "X";
+    closeButton.classList.add("close-button");
+    closeButton.addEventListener("click", () => {
+        editInterface.remove();
+        overlay.style.display = "none"; // Cacher l'overlay
+    });
+    editInterface.appendChild(closeButton);
 
     editInterface.appendChild(editedTitleLabel);
     editInterface.appendChild(editedTitleInput);
