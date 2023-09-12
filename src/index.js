@@ -156,6 +156,14 @@ function openLabelManagementPage() {
     const labelColorInput = document.createElement("input");
     labelColorInput.type = "color";
     labelColorInput.classList.add("label-color-input");
+    labelColorInput.id = "colorPicker";
+
+    labelColorInput.addEventListener('input', () => {
+        const selectedColor = labelColorInput.value;
+        labelColorInput.style.backgroundColor = selectedColor;
+    });
+    
+    labelColorInput.style.backgroundColor = labelColorInput.value;
 
     const createLabelButton = document.createElement("p");
     createLabelButton.textContent = "+";
@@ -193,6 +201,19 @@ function getExistingLabels(){
     });
 
     // Ajoutez un gestionnaire d'événement pour créer une nouvelle étiquette
+    createLabelButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const newLabelName = labelNameInput.value;
+        const newLabelColor = labelColorInput.value;
+
+        if (newLabelName && newLabelColor) {
+            addNewLabel(newLabelName, newLabelColor);
+            labelNameInput.value = "";
+            labelColorInput.value = "";
+            displayLabelsInManagementPage();
+        }
+    });
+
     createLabelButton.addEventListener("click", (e) => {
         e.preventDefault();
         const newLabelName = labelNameInput.value;
@@ -251,6 +272,7 @@ addTask.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
     overlay.style.display = "none";
     taskInterface.style.display = "none";
+
 });
 
 saveButton.addEventListener("click", () => {
@@ -366,11 +388,6 @@ function displaySavedTask(taskId, task) {
         console.log(updatedTask);
     }
 }
-
-closeButton.addEventListener("click", () => {
-    infoInterface.remove();
-    overlay.style.display = "none"; // Cacher l'overlay
-});
 
 function openEditInterface(taskId, task) {
     // Créer l'interface d'édition
@@ -513,7 +530,12 @@ function openInfoInterface(taskId, task) {
 
     // Afficher l'interface d'informations
     infoInterface.style.display = "grid"; // Utiliser "grid" pour afficher l'interface
-}    
+}   
+
+closeButton.addEventListener("click", () => {
+    infoInterface.remove();
+    overlay.style.display = "none"; // Cacher l'overlay
+});
 
 function updateTask(taskId, updatedTask) {
     // Mettre à jour la tâche dans le localStorage (à compléter)
