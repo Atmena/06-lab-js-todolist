@@ -122,6 +122,9 @@ p {
   grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
   padding: 0;
 }
+.task-interface p, .task-interface label {
+  font-size: 1rem;
+}
 
 .info-interface {
   display: none;
@@ -137,6 +140,9 @@ p {
   grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
   padding: 0;
 }
+.info-interface p, .info-interface label {
+  font-size: 1rem;
+}
 
 .edit-interface {
   display: none;
@@ -146,11 +152,14 @@ p {
   transform: translate(-50%, -50%); /* Centre parfaitement */
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
   z-index: 2000; /* Valeur plus élevée pour l'interface */
   grid-template-columns: 22px 56px 518px 20px 32px;
   grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
   padding: 0;
+}
+.edit-interface p, .edit-interface label {
+  font-size: 1rem;
 }
 
 .titleLabel {
@@ -184,7 +193,7 @@ p {
 }
 
 .add-label-button {
-  grid-column: 2;
+  grid-column: 2/4;
   grid-row: 8;
   cursor: pointer;
 }
@@ -255,13 +264,11 @@ p {
 .taskTitle-display {
   grid-column: 3;
   grid-row: 2;
-  font-size: 1rem;
 }
 
 .taskDescription-display {
   grid-column: 2/4;
   grid-row: 5;
-  font-size: 1rem;
 }
 
 .edited-title {
@@ -282,6 +289,41 @@ p {
 .edited-description-input {
   grid-column: 2/4;
   grid-row: 5;
+}
+
+.create-label-form {
+  display: grid;
+  position: fixed;
+  top: 50%;
+  left: 23%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 25px;
+  z-index: 2000;
+  grid-template-columns: 13px 87px 87px 13px 17px 13px;
+  grid-template-rows: 13px 22px 17px 21px 13px;
+  padding: 0;
+}
+
+.label-name-input {
+  grid-column: 2/4;
+  grid-row: 4;
+}
+
+.label-color-input {
+  grid-column: 5;
+  grid-row: 4;
+  border-radius: 50%;
+  appearance: none;
+  width: 0.9375rem;
+  height: 0.9375rem;
+}
+
+.create-label-button {
+  grid-column: 4;
+  grid-row: 4;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

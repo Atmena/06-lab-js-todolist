@@ -130,7 +130,7 @@ const labelDisplay = document.createElement("div");
 labelDisplay.classList.add("label-display");
 
 
-const addLabelButton = document.createElement("button");
+const addLabelButton = document.createElement("p");
 addLabelButton.textContent = "+ Étiquette";
 addLabelButton.classList.add("add-label-button");
 addLabelButton.addEventListener("click", () => {
@@ -157,8 +157,8 @@ function openLabelManagementPage() {
     labelColorInput.type = "color";
     labelColorInput.classList.add("label-color-input");
 
-    const createLabelButton = document.createElement("button");
-    createLabelButton.textContent = "Créer une étiquette";
+    const createLabelButton = document.createElement("p");
+    createLabelButton.textContent = "+";
     createLabelButton.classList.add("create-label-button");
 
     createLabelForm.appendChild(labelNameInput);
