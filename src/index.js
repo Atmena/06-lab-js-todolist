@@ -192,10 +192,11 @@ function displaySavedTask(taskId, task) {
     });
     taskDiv.id = taskId;
 
-    const titleParagraph = document.createElement("p");
+    const labelDiv = document.createElement("div");
 
-    // Limitez le nombre de caractères à afficher (par exemple, 30 caractères)
-    const maxLength = 22;
+    const titleParagraph = document.createElement("p");
+    
+    const maxLength = 45;
     let truncatedTitle = task.title;
 
     if (task.title.length > maxLength) {
@@ -203,8 +204,6 @@ function displaySavedTask(taskId, task) {
     }
 
     titleParagraph.textContent = truncatedTitle;
-
-    const labelDiv = document.createElement("div");
 
     const infoIcon = document.createElement("img");
     infoIcon.src = "src/image/information.svg";
