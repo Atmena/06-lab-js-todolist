@@ -123,119 +123,6 @@ descriptionLabel.classList.add("descriptionLabel");
 const descriptionInput = document.createElement("textarea");
 descriptionInput.classList.add("taskDescription-input");
 
-const labelLabel = document.createElement("label");
-labelLabel.textContent = "Étiquettes:";
-labelLabel.classList.add("labelEtiquette");
-const labelDisplay = document.createElement("div");
-labelDisplay.classList.add("label-display");
-
-
-const addLabelButton = document.createElement("p");
-addLabelButton.textContent = "+ Étiquette";
-addLabelButton.classList.add("add-label-button");
-addLabelButton.addEventListener("click", () => {
-    // Ouvrir une nouvelle page ou une fenêtre modale pour gérer les étiquettes
-    openLabelManagementPage();
-});
-
-// Fonction pour ouvrir la page de gestion des étiquettes
-function openLabelManagementPage() {
-    // Créez une interface pour gérer les étiquettes
-    const labelManagementPage = document.createElement("div");
-    labelManagementPage.classList.add("label-management-page");
-
-    // Créez un formulaire pour créer une nouvelle étiquette
-    const createLabelForm = document.createElement("form");
-    createLabelForm.classList.add("create-label-form");
-
-    const labelNameInput = document.createElement("input");
-    labelNameInput.type = "text";
-    labelNameInput.placeholder = "Nom de l'étiquette";
-    labelNameInput.classList.add("label-name-input");
-
-    const labelColorInput = document.createElement("input");
-    labelColorInput.type = "color";
-    labelColorInput.classList.add("label-color-input");
-    labelColorInput.id = "colorPicker";
-
-    labelColorInput.addEventListener('input', () => {
-        const selectedColor = labelColorInput.value;
-        labelColorInput.style.backgroundColor = selectedColor;
-    });
-    
-    labelColorInput.style.backgroundColor = labelColorInput.value;
-
-    const createLabelButton = document.createElement("p");
-    createLabelButton.textContent = "+";
-    createLabelButton.classList.add("create-label-button");
-
-    createLabelForm.appendChild(labelNameInput);
-    createLabelForm.appendChild(labelColorInput);
-    createLabelForm.appendChild(createLabelButton);
-
-    // Créez une section pour afficher les étiquettes existantes
-    const existingLabelsSection = document.createElement("div");
-    existingLabelsSection.classList.add("existing-labels-section");
-
-function getExistingLabels(){
-    return document.querySelectorAll("div")
-}
-
-    // Affichez les étiquettes existantes
-    const existingLabels = getExistingLabels();
-    existingLabels.forEach((label) => {
-        const labelItem = document.createElement("div");
-        labelItem.classList.add("label-item");
-
-        const labelColor = document.createElement("div");
-        labelColor.style.backgroundColor = label.color;
-        labelColor.classList.add("color-box");
-
-        const labelName = document.createElement("span");
-        labelName.textContent = label.name;
-
-        labelItem.appendChild(labelColor);
-        labelItem.appendChild(labelName);
-
-        existingLabelsSection.appendChild(labelItem);
-    });
-
-    // Ajoutez un gestionnaire d'événement pour créer une nouvelle étiquette
-    createLabelButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        const newLabelName = labelNameInput.value;
-        const newLabelColor = labelColorInput.value;
-
-        if (newLabelName && newLabelColor) {
-            addNewLabel(newLabelName, newLabelColor);
-            labelNameInput.value = "";
-            labelColorInput.value = "";
-            displayLabelsInManagementPage();
-        }
-    });
-
-    createLabelButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        const newLabelName = labelNameInput.value;
-        const newLabelColor = labelColorInput.value;
-
-        if (newLabelName && newLabelColor) {
-            addNewLabel(newLabelName, newLabelColor);
-            labelNameInput.value = "";
-            labelColorInput.value = "";
-            displayLabelsInManagementPage();
-        }
-    });
-
-    // Ajoutez la section de gestion des étiquettes à la page principale
-    labelManagementPage.appendChild(createLabelForm);
-    labelManagementPage.appendChild(existingLabelsSection);
-
-    // Affichez la page de gestion des étiquettes avec l'overlay
-    overlay.style.display = "block";
-    appDiv.appendChild(labelManagementPage);
-}
-
 const closeButton = document.createElement("p");
 closeButton.textContent = "X";
 closeButton.classList.add("close-button");
@@ -253,9 +140,6 @@ taskInterface.appendChild(titleLabel);
 taskInterface.appendChild(titleInput);
 taskInterface.appendChild(descriptionLabel);
 taskInterface.appendChild(descriptionInput);
-taskInterface.appendChild(labelLabel);
-taskInterface.appendChild(labelDisplay);
-taskInterface.appendChild(addLabelButton);
 taskInterface.appendChild(closeButton);
 taskInterface.appendChild(saveButton);
 appDiv.appendChild(taskInterface);
@@ -384,8 +268,6 @@ function displaySavedTask(taskId, task) {
         // Réaffecter cet objet complet dans le stockage local
         const taskId = taskDiv.id;
         localStorage.setItem(taskId, JSON.stringify(updatedTask));
-
-        console.log(updatedTask);
     }
 }
 
@@ -508,19 +390,10 @@ function openInfoInterface(taskId, task) {
     infoDescriptionLabel.textContent = "Description:";
     infoDescriptionLabel.classList.add("descriptionLabel");
 
-    const infoLabelLabel = document.createElement("label");
-    infoLabelLabel.textContent = "Étiquettes:";
-    infoLabelLabel.classList.add("labelEtiquette");
-
-    const infoLabelDisplay = document.createElement("div");
-    infoLabelDisplay.classList.add("label-display");
-
     infoInterface.appendChild(infoTitleLabel);
     infoInterface.appendChild(infoTitleDisplay);
     infoInterface.appendChild(infoDescriptionLabel);
     infoInterface.appendChild(infoDescriptionDisplay);
-    infoInterface.appendChild(infoLabelLabel);
-    infoInterface.appendChild(infoLabelDisplay);
     infoInterface.appendChild(closeButton);
 
     document.body.appendChild(infoInterface);
