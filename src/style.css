@@ -2,6 +2,8 @@
 :root {
   font-family: "Itim", sans-serif;
   font-size: 1.25rem;
+  --white: #fff;
+  --black: #484848;
   --aFaire: #cc1717;
   --enCours: #EFB110;
   --termine: #4390D7;
@@ -9,7 +11,6 @@
 
 body {
   background-image: url(image/background-white.png);
-  font-family: "Itim", sans-serif;
   margin: 0rem 4.8125rem;
 }
 
@@ -24,28 +25,29 @@ p {
   align-items: center;
   padding-top: 2.75rem;
   padding-bottom: 4.1437rem;
+  align-items: end;
 }
 
 .search-input {
   width: 35.625vw; /* 681px / 1920px * 100 */
   max-width: 681px;
-  height: 2.75rem;
+  height: 2rem;
   border-radius: 15px;
   background-color: transparent;
   margin-left: 10px;
+  font-family: "Itim";
 }
 
 .search-input-label {
-  margin-bottom: 0.3125rem;
   font-family: "Itim", sans-serif;
-  font-size: 1.25rem;
+  align-items: end;
 }
 
 .mode-switcher {
   display: flex;
   align-items: center;
   border-radius: 1.5625rem;
-  border: 0.0625rem solid #000;
+  border: 0.0625rem solid var(--black);
   width: 3.75rem;
   height: 2.1875rem;
   padding: 0 0.3125rem;
@@ -64,13 +66,8 @@ p {
 }
 .mode-switcher.dark-mode-active .mode-image {
   padding: 0;
-  transform: translateX(100%);
+  transform: translateX(0%);
   right: 0;
-}
-
-.dark-mode {
-  background-image: url(image/background-black.png);
-  color: #fff;
 }
 
 .app {
@@ -81,7 +78,7 @@ p {
 .toDo {
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 0.625rem;
-  min-height: 8.75rem;
+  min-height: 140px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 50% 50%;
@@ -116,14 +113,11 @@ p {
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
-  grid-template-rows: 18px 30px 30px 33px 118px 8px;
+  grid-template-rows: 18px 30px 30px 33px 86px 32px 8px;
   padding: 0;
 }
 .task-interface p, .task-interface label {
   font-size: 1rem;
-}
-.task-interface img {
-  margin-left: 0.625rem;
 }
 
 .info-interface {
@@ -132,12 +126,12 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--white);
   padding: 20px;
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
-  grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
+  grid-template-rows: 18px 30px 30px 33px 118px 8px;
   padding: 0;
 }
 .info-interface p, .info-interface label {
@@ -150,12 +144,12 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: var(--white);
   padding: 20px;
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
-  grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
+  grid-template-rows: 18px 30px 30px 33px 86px 32px 8px;
   padding: 0;
 }
 .edit-interface p, .edit-interface label {
@@ -165,25 +159,29 @@ p {
 .titleLabel {
   grid-column: 2;
   grid-row: 2;
+  text-decoration: underline;
 }
 
 .taskTitle-input {
   grid-column: 3;
   grid-row: 2;
-  border: solid 1px black;
+  border: solid 1px var(--black);
   border-radius: 0.625rem;
+  padding: 0 10px;
 }
 
 .descriptionLabel {
   grid-column: 2;
   grid-row: 4;
+  text-decoration: underline;
 }
 
 .taskDescription-input {
   grid-column: 2/4;
-  grid-row: 5;
-  border: solid 1px black;
+  grid-row: 5/7;
+  border: solid 1px var(--black);
   border-radius: 0.625rem;
+  padding: 2px 10px;
 }
 
 .close-button {
@@ -195,8 +193,9 @@ p {
 
 .save-button {
   grid-column: 4/6;
-  grid-row: 5;
+  grid-row: 6;
   cursor: pointer;
+  margin-left: 0.625rem;
 }
 
 .icon {
@@ -224,7 +223,7 @@ p {
 .task {
   width: 235px;
   height: 120px;
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 15px;
   display: grid;
   grid-template-rows: 30px 30px 30px 30px;
@@ -292,8 +291,58 @@ p {
 .edited-description-input {
   padding: 5px;
   grid-column: 2/4;
-  grid-row: 5;
+  grid-row: 5/7;
   border-radius: 10px;
+}
+
+.dark-mode {
+  background-image: url(image/background-black.png);
+  color: var(--white);
+}
+.dark-mode #logo {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .mode-switcher {
+  border: 0.0625rem solid var(--white);
+}
+.dark-mode .toDo {
+  background-color: rgba(250, 250, 250, 0.3);
+}
+.dark-mode .task-interface {
+  background-color: var(--black);
+}
+.dark-mode .info-interface {
+  background-color: var(--black);
+}
+.dark-mode .edit-interface {
+  background-color: var(--black);
+}
+.dark-mode .taskTitle-input {
+  border: solid 1px var(--white);
+}
+.dark-mode .taskDescription-input {
+  border: solid 1px var(--white);
+}
+.dark-mode .close-button {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .save-button {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .icon {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .info {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .edit {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .trash {
+  filter: invert(88%) sepia(59%) saturate(12%) hue-rotate(158deg) brightness(106%) contrast(107%);
+}
+.dark-mode .task {
+  background-color: var(--black);
 }
 
 /*# sourceMappingURL=style.css.map */

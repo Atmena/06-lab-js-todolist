@@ -4,6 +4,7 @@ const header = document.createElement("header");
 header.classList.add("header");
 
 const logo = document.createElement("img");
+logo.id = "logo";
 logo.src = "src/image/logo.svg";
 logo.alt = "Logo";
 logo.width = 100;
