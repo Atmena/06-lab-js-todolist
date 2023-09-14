@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
   font-family: "Itim", sans-serif;
-  font-size: 1rem;
+  font-size: 1.25rem;
   --aFaire: #cc1717;
   --enCours: #EFB110;
   --termine: #4390D7;
@@ -85,7 +85,7 @@ p {
   overflow: hidden;
   display: grid;
   grid-template-columns: 50% 50%;
-  min-width: 31.875rem;
+  min-width: 510px;
 }
 
 .add-task {
@@ -116,11 +116,14 @@ p {
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
-  grid-template-rows: 18px 30px 30px 33px 118px 25px 134px 39px 8px;
+  grid-template-rows: 18px 30px 30px 33px 118px 8px;
   padding: 0;
 }
 .task-interface p, .task-interface label {
   font-size: 1rem;
+}
+.task-interface img {
+  margin-left: 0.625rem;
 }
 
 .info-interface {
@@ -167,6 +170,8 @@ p {
 .taskTitle-input {
   grid-column: 3;
   grid-row: 2;
+  border: solid 1px black;
+  border-radius: 0.625rem;
 }
 
 .descriptionLabel {
@@ -177,6 +182,8 @@ p {
 .taskDescription-input {
   grid-column: 2/4;
   grid-row: 5;
+  border: solid 1px black;
+  border-radius: 0.625rem;
 }
 
 .close-button {
@@ -188,7 +195,7 @@ p {
 
 .save-button {
   grid-column: 4/6;
-  grid-row: 8;
+  grid-row: 5;
   cursor: pointer;
 }
 
@@ -225,6 +232,7 @@ p {
   margin: 15px;
 }
 .task p {
+  font-size: 1rem;
   grid-column: 1;
   padding: 0.3125rem 0.6875rem;
 }
