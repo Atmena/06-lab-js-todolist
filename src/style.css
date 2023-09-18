@@ -427,7 +427,7 @@ p {
   }
   .task-interface {
     grid-template-columns: 22px 56px 170px 20px 32px;
-    grid-template-rows: 18px 30px 30px 33px 350px 32px 18px;
+    grid-template-rows: 18px 30px 30px 33px 150px 32px 18px;
     padding: 0;
   }
   .task-interface p, .task-interface label {
