@@ -234,6 +234,7 @@ p {
   grid-template-rows: 30px 30px 30px 30px;
   grid-template-columns: 210px 24px;
   margin: 15px;
+  cursor: grab;
 }
 .task p {
   font-size: 1rem;
@@ -442,7 +443,7 @@ p {
   }
   .edit-interface {
     grid-template-columns: 22px 56px 170px 20px 32px;
-    grid-template-rows: 18px 30px 30px 33px 350px 32px 18px;
+    grid-template-rows: 18px 30px 30px 33px 150px 32px 18px;
     padding: 0;
   }
   .edit-interface p, .edit-interface label {
