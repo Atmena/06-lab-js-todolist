@@ -400,5 +400,66 @@ p {
     background-image: url(image/mobile-background-black.png);
   }
 }
+@media screen and (max-width: 426px) {
+  :root {
+    font-size: 1rem;
+  }
+  body {
+    margin: 10px;
+  }
+  p {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+  }
+  .search-input-label {
+    max-width: 175px;
+  }
+  .toDo {
+    grid-template-columns: 100%;
+    min-width: 255px;
+  }
+  .task-interface {
+    grid-template-columns: 22px 56px 170px 20px 32px;
+    grid-template-rows: 18px 30px 30px 33px 350px 32px 18px;
+    padding: 0;
+  }
+  .task-interface p, .task-interface label {
+    font-size: 20px;
+  }
+  .info-interface {
+    grid-template-columns: 22px 56px 170px 20px 32px;
+    grid-template-rows: 18px 30px 30px 33px 350px 32px 18px;
+  }
+  .info-interface p, .info-interface label {
+    font-size: 1rem;
+  }
+  .edit-interface {
+    grid-template-columns: 22px 56px 170px 20px 32px;
+    grid-template-rows: 18px 30px 30px 33px 350px 32px 18px;
+    padding: 0;
+  }
+  .edit-interface p, .edit-interface label {
+    font-size: 20px;
+  }
+  .mode-switcher {
+    width: 38px;
+    height: 38px;
+  }
+  .mode-switcher .mode-image {
+    padding: 0 3px;
+  }
+}
+@media screen and (max-width: 320px) {
+  #logo {
+    width: 75px;
+    height: 75px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
