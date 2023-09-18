@@ -326,6 +326,7 @@ p {
 }
 .dark-mode .taskTitle-input {
   border: solid 1px var(--white);
+  color: var(--white);
 }
 .dark-mode .taskDescription-input {
   border: solid 1px var(--white);
