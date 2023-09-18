@@ -106,7 +106,7 @@ appDiv.appendChild(emptyDiv);
 const addTask = document.createElement("p");
 addTask.textContent = "+";
 addTask.classList.add("add-task");
-appDiv.appendChild(addTask);
+aFaireDiv.appendChild(addTask);
 
 const taskInterface = document.createElement("div");
 taskInterface.classList.add("task-interface");

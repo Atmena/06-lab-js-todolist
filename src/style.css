@@ -11,6 +11,8 @@
 
 body {
   background-image: url(image/background-white.png);
+  background-size: cover;
+  background-repeat: no-repeat;
   margin: 0rem 4.8125rem;
 }
 
@@ -48,23 +50,22 @@ p {
 .mode-switcher {
   display: flex;
   align-items: center;
-  border-radius: 1.5625rem;
+  border-radius: 50%;
   border: 0.0625rem solid var(--black);
-  width: 3.75rem;
-  height: 2.1875rem;
-  padding: 0 0.3125rem;
+  width: 50px;
+  height: 50px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
 }
 .mode-switcher .mode-image {
-  padding-left: 0.3125rem;
-  position: absolute;
   width: 2rem;
   height: 2rem;
   transition: transform 0.4s ease-in-out;
   transform: translateX(0);
   left: 0;
+  justify-self: center;
+  padding: 0 5px;
 }
 .mode-switcher.dark-mode-active .mode-image {
   padding: 0;
@@ -357,6 +358,47 @@ p {
 .dark-mode .search-input {
   border-color: var(--white);
   color: var(--white);
+}
+
+@media screen and (max-device-width: 1441px) {
+  .toDo {
+    grid-template-columns: 100%;
+    min-width: 255px;
+  }
+}
+@media screen and (max-width: 768px) {
+  body {
+    background-image: url(image/mobile-background-white.png);
+    background-repeat: repeat-y;
+  }
+  .app {
+    display: grid;
+    grid-template-rows: none;
+    justify-content: center;
+  }
+  .search-input-label {
+    max-width: 300px;
+  }
+  .search-input {
+    margin-left: 0;
+  }
+  .toDo {
+    grid-template-columns: 50% 50%;
+  }
+  #aFaire {
+    grid-row: 1;
+  }
+  #enCours {
+    grid-row: 2;
+    margin-top: 20px;
+  }
+  #terminé {
+    grid-row: 3;
+    margin-top: 20px;
+  }
+  .dark-mode {
+    background-image: url(image/mobile-background-black.png);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
