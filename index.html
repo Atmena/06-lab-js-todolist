@@ -29,7 +29,7 @@
         var data = ev.dataTransfer.getData("text");
         var draggedElement = document.getElementById(data);
 
-        if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task') && draggedElement.tagName !== 'IMG') {
+        if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task')) {
             ev.target.appendChild(draggedElement);
 
             let key = JSON.parse(localStorage.getItem(data));
