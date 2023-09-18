@@ -27,22 +27,26 @@
     function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
+        var draggedElement = document.getElementById(data);
 
-        let key = JSON.parse(localStorage.getItem(data));
+        if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task') && draggedElement.tagName !== 'IMG') {
+            ev.target.appendChild(draggedElement);
 
-        const taskState = ev.target;
-        let targetDiv;
+            let key = JSON.parse(localStorage.getItem(data));
 
-        if (taskState.classList.contains('aFaire')) {
-            key.state = 'aFaire';
-        } else if (taskState.classList.contains('enCours')) {
-            key.state = 'enCours';
-        } else if (taskState.classList.contains('terminé')) {
-            key.state = 'termine';
+            const taskState = ev.target;
+            let targetDiv;
+
+            if (taskState.classList.contains('aFaire')) {
+                key.state = 'aFaire';
+            } else if (taskState.classList.contains('enCours')) {
+                key.state = 'enCours';
+            } else if (taskState.classList.contains('termine')) {
+                key.state = 'termine';
+            }
+
+            localStorage.setItem(data, JSON.stringify(key));
         }
-
-        localStorage.setItem(data, JSON.stringify(key));
     }
 </script>
 </html>

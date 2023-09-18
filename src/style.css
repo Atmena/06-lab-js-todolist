@@ -361,7 +361,7 @@ p {
   color: var(--white);
 }
 
-@media screen and (max-device-width: 1441px) {
+@media screen and (max-device-width: 1601px) {
   .toDo {
     grid-template-columns: 100%;
     min-width: 255px;
