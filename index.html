@@ -24,28 +24,38 @@
         ev.dataTransfer.setData("text", ev.target.id);
     }
 
+    function determineTaskState(taskElement) {
+        if (taskElement.classList.contains('aFaire')) {
+            return 'aFaire';
+        } else if (taskElement.classList.contains('enCours')) {
+            return 'enCours';
+        } else if (taskElement.classList.contains('terminé')) {
+            return 'termine';
+        }
+    }
+
     function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
         var draggedElement = document.getElementById(data);
 
-        if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task')) {
+        if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task') && draggedElement.tagName !== 'IMG') {
             ev.target.appendChild(draggedElement);
 
             let key = JSON.parse(localStorage.getItem(data));
-
-            const taskState = ev.target;
-            let targetDiv;
-
-            if (taskState.classList.contains('aFaire')) {
-                key.state = 'aFaire';
-            } else if (taskState.classList.contains('enCours')) {
-                key.state = 'enCours';
-            } else if (taskState.classList.contains('terminé')) {
-                key.state = 'termine';
-            }
-
+            key.state = determineTaskState(ev.target);
             localStorage.setItem(data, JSON.stringify(key));
+        } else if (ev.target.classList.contains('task')) {
+            var targetTask = ev.target;
+            var targetToDo = targetTask.closest('.toDo');
+
+            if (targetToDo) {
+                targetToDo.appendChild(draggedElement);
+
+                let key = JSON.parse(localStorage.getItem(data));
+                key.state = determineTaskState(targetToDo);
+                localStorage.setItem(data, JSON.stringify(key));
+            }
         }
     }
 </script>
