@@ -16,7 +16,6 @@ searchInput.placeholder = "Rechercher une tâche...";
 searchInput.classList.add("search-input");
 
 const searchInputLabel = document.createElement("label");
-searchInputLabel.textContent = "Nom de la tâche";
 searchInputLabel.classList.add("search-input-label");
 searchInputLabel.appendChild(searchInput);
 
@@ -476,3 +475,46 @@ searchInput.addEventListener("input", function () {
 });
 
 loadSavedTasks();
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function determineTaskState(taskElement) {
+    if (taskElement.classList.contains('aFaire')) {
+        return 'aFaire';
+    } else if (taskElement.classList.contains('enCours')) {
+        return 'enCours';
+    } else if (taskElement.classList.contains('terminé')) {
+        return 'termine';
+    }
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    var draggedElement = document.getElementById(data);
+
+    if (ev.target.classList.contains('toDo') && draggedElement.classList.contains('task') && draggedElement.tagName !== 'IMG') {
+        ev.target.appendChild(draggedElement);
+
+        let key = JSON.parse(localStorage.getItem(data));
+        key.state = determineTaskState(ev.target);
+        localStorage.setItem(data, JSON.stringify(key));
+    } else if (ev.target.classList.contains('task')) {
+        var targetTask = ev.target;
+        var targetToDo = targetTask.closest('.toDo');
+
+        if (targetToDo) {
+            targetToDo.appendChild(draggedElement);
+
+            let key = JSON.parse(localStorage.getItem(data));
+            key.state = determineTaskState(targetToDo);
+            localStorage.setItem(data, JSON.stringify(key));
+        }
+    }
+}

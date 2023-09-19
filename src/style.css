@@ -33,18 +33,14 @@ p {
 .search-input {
   width: 35.625vw; /* 681px / 1920px * 100 */
   max-width: 681px;
-  height: 2rem;
+  height: 38px;
   border-radius: 15px;
   background-color: transparent;
   margin-left: 10px;
   font-family: "Itim";
+  font-size: 1.5625rem;
   border: 1px var(--black) solid;
   padding: 0 0.625rem;
-}
-
-.search-input-label {
-  font-family: "Itim", sans-serif;
-  align-items: end;
 }
 
 .mode-switcher {
@@ -52,20 +48,20 @@ p {
   align-items: center;
   border-radius: 50%;
   border: 0.0625rem solid var(--black);
-  width: 50px;
-  height: 50px;
+  width: 38px;
+  height: 38px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
 }
 .mode-switcher .mode-image {
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   transition: transform 0.4s ease-in-out;
   transform: translateX(0);
   left: 0;
   justify-self: center;
-  padding: 0 5px;
+  padding: 0 3px;
 }
 .mode-switcher.dark-mode-active .mode-image {
   padding: 0;
@@ -112,7 +108,6 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  padding: 20px;
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
@@ -130,7 +125,6 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--white);
-  padding: 20px;
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
@@ -148,7 +142,6 @@ p {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--white);
-  padding: 20px;
   border-radius: 25px;
   z-index: 2000;
   grid-template-columns: 22px 56px 518px 20px 32px;
@@ -416,7 +409,7 @@ p {
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding-top: 1.25rem;
   }
   .search-input-label {
@@ -450,10 +443,12 @@ p {
     font-size: 20px;
   }
   .mode-switcher {
-    width: 38px;
-    height: 38px;
+    width: 32px;
+    height: 32px;
   }
   .mode-switcher .mode-image {
+    width: 26px;
+    height: 26px;
     padding: 0 3px;
   }
 }
